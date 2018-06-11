@@ -1,0 +1,90 @@
+*{background-color: palegoldenrod}
+
+.container{
+    overflow: hidden;
+    background-color: #333;
+
+}
+.container a{
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 35px 45px;
+    text-decoration: none;
+    font-size: 30px;
+}
+.container a.active{
+    background-color: #333;
+    color: white;
+}
+
+.button1 {
+    background-color: hotpink;
+    border: 1px crimson; /* Green border */
+    color: white; /* White text */
+    padding: 30px 40px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+    width: 30%;
+    border-radius:40% ;
+    margin-left: auto;
+    margin-right: 20%;
+    margin-top: 20% ;
+    margin-bottom: auto;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    margin-top: 20px;
+}
+.h{
+    background-color:grey;
+    color: black;
+}
+
+.smalldiv{
+    background-color: grey;
+    padding: 20px;
+    margin-top: 20px;
+
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid white;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+    background-color: #f2f2f2;
+
+}
+
+.container2 {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+input[type=submit] {
+    background-color: black;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+a:link, a:visited {
+    background-color: grey;
+    color: white;
+    text-decoration: none;
+
+}
+
+
+a:hover, a:active {
+    background-color: gold;
+}
