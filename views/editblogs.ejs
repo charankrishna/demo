@@ -2,15 +2,15 @@
 
 
 <div class="container2">
-    <form   action="/update/<%= newPost.id%>" method="post" id="form">
+    <form   action="/update/<%= newPost._id%>" method="post" id="form">
         <input type="hidden" name="_method" value="put">
         <label for="topic">Topic</label>
         <input type="text"  name="topic" id="topic" value=<%= newPost.topic%> >
         <label for="description">Description</label>
-        <textarea placeholder="Description" name="description" id="description" value=<%= newPost.description%> ></textarea>
+        <textarea placeholder="Description" name="description" id="description" ><%= newPost.description%></textarea>
         <label for="author">Author</label>
-        <input type="text" placeholder="Author" name="author" id="author" >
-        <input type="button" value="Update" class="button2" >
+        <input type="text" placeholder="Author" name="author" id="author"  value="<%= newPost.author%>">
+        <input type="submit" value="Update" class="button2" >
     </form>
 </div>
 

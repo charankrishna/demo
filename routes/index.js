@@ -97,7 +97,6 @@ router.put('/update/:id' ,function(req,res){
 
     db.Post.findByIdAndUpdate({_id: req.params.id}, req.body)
         .then(function(newPost){
-            /*res.json(newPost);*/
             res.redirect('/readpost');
         })
         .catch(function(err){
