@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 
+var methodOverride = require('method-override');
+
+
+
 var router=require('./routes/index');
 
 
-var port=3000;
+var port=3001;
 /*
 var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/blogs");
@@ -19,7 +23,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 var indexRouter = require('./routes/index');
 app.set('view engine', 'ejs');
 app.set(express.static('views'));
-app.use(express.static('public'));
+app.use(express.static(__dirname+'/public'));
+
+app.use(methodOverride('_method'));
 
 /*var nameSchema = new mongoose.Schema({
     topic: String,

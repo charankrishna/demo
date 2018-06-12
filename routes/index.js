@@ -1,15 +1,29 @@
+var bodyParser = require("body-parser");
 const express=require('express');
 var router=express.Router();
 var db= require('../models/index');
 var post = db.Post;
+var methodOverride = require('method-override');
+
+
+
+
+router.use(bodyParser.json());
+
+router.use(bodyParser.urlencoded({extended:true}));
+router.use(methodOverride(function (req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
 
 router.get('/Writepost',function (req,res) {
     res.render('Writepost');
 });
 
-router.get('/ud',function (req,res) {
-    res.render('ud');
-});
 
 router.get('/',function (req,res) {
     res.render('index');
@@ -26,8 +40,7 @@ router.get('/readpost',function (req,res) {
     });
 
 
-
-});
+    });
 
 router.post('/readpost',function (req,res) {
     console.log(req.body);
@@ -48,7 +61,66 @@ router.post('/readpost',function (req,res) {
 
 });
 
-router.get('/readpost/:id')
+
+router.get('/:id',function (req,res) {
+    var id = req.params.id;
+    console.log(id);
+    db.Post.findById(id)
+        .then(function(newPost){
+            res.render('ud',{newPost: newPost});
+        })
+        .catch(function(err){
+            res.send(err)
+        })
+});
+
+
+// update field
+
+
+
+
+router.get('/:id/editblogs',function (req,res) {
+    var id = req.params.id;
+    console.log(id);
+    db.Post.findById(id)
+        .then(function(newPost){
+            res.render('editblogs',{newPost: newPost});
+            /*res.json(newPost)*/
+        })
+        .catch(function(err){
+            res.send(err)
+        })
+});
+
+router.put('/update/:id' ,function(req,res){
+
+    db.Post.findByIdAndUpdate({_id: req.params.id}, req.body)
+        .then(function(newPost){
+            /*res.json(newPost);*/
+            res.redirect('/readpost');
+        })
+        .catch(function(err){
+            res.send(err)
+        })
+
+});
+
+//delete post
+
+router.delete('/:id/delete', function(req,res){
+    db.Post.remove({_id : req.params.id})
+        .then(function(){
+            res.redirect('/readpost');
+        })
+        .catch(function(err){
+            res.send(err)
+        })
+
+});
+
+
+
 
 
 module.exports=router;
